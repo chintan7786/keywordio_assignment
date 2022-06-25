@@ -1,0 +1,10 @@
+{% extends 'library/base.html' %} {% block body %}
+
+<div class="container">
+    <div class="alert alert-danger" role="alert">
+        You have been logged out
+    </div>
+
+    <a style="text-decoration: none;" href="{% url 'user_login' %}">Log in Again</a>
+</div>
+{% endblock %}

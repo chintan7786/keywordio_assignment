@@ -1,0 +1,40 @@
+{% extends 'library/base.html' %} {% load has_group %} {% block body %}
+<div class="container">
+    {% if user.is_authenticated %}
+    <h1>Book List</h1>
+    <br> {% if request.user|has_group:'admin' %}
+    <a class="btn btn-primary" href="{% url 'create_book' %}">Create Book</a> {% endif %}
+    <br> <br>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th class="col">#</th>
+                <th class="col">Book Name</th>
+                <th class="col">Author Name</th>
+                {% if request.user|has_group:'admin' %}
+                <th class="col">Actions</th>
+                {% endif %}
+
+            </tr>
+        </thead>
+        <tbody>
+            {% for book in books %}
+            <tr>
+                <th scope="row">{{ forloop.counter }}</th>
+                <td>{{ book.book_name }}</td>
+                <td>{{ book.author }}</td>
+                {% if request.user|has_group:'admin' %}
+                <td>
+                    <a href="{% url 'update_book' book.pk %}">update</a>
+                    <a href="{% url 'delete_book' book.pk %}">delete</a>
+                </td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <h1>Please <a href="{% url 'user_login' %}">Login</a> to continue</h1>
+    {% endif %}
+</div>
+{% endblock body %}
