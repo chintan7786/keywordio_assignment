@@ -60,6 +60,7 @@ def allowed_users(allowed_roles=[]):
 
 ### Step 3:
 Created Login and Regiteration pages.
+By default the user will be added to student group and we can change group from admin panel.
 
 
 ### Step 4:
